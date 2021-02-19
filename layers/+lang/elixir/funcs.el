@@ -34,6 +34,12 @@
   (pcase (spacemacs//elixir-backend)
     (`lsp (spacemacs//elixir-setup-lsp-dap))))
 
+(defun spacemacs//elixir-setup-iex ()
+  "Conditionally setup IEx shell integration."
+  ;; Alchemist has IEx integration built-in, but LSP requires a separate package.
+  (pcase (spacemacs//elixir-backend)
+    (`lsp (spacemacs//elixir-setup-inf-elixir))))
+
 
 ;;alchemist
 
@@ -60,6 +66,10 @@
 (defun spacemacs//elixir-setup-lsp-dap ()
   "Setup DAP integration."
   (require 'dap-elixir))
+
+(defun spacemacs//elixir-setup-inf-elixir ()
+  "Setup inf-elixir integration."
+  (require 'inf-elixir))
 
 
 ;; others

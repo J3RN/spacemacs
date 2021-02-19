@@ -21,6 +21,7 @@
     flycheck-credo
     ggtags
     helm-gtags
+    inf-elixir
     ob-elixir
     popwin
     smartparens))
@@ -181,6 +182,19 @@
 
 (defun elixir/post-init-helm-gtags ()
   (spacemacs/helm-gtags-define-keys-for-mode 'elixir-mode))
+
+(defun elixir/init-inf-elixir ()
+  (use-package inf-elixir
+    :defer t
+    :config
+    (spacemacs/set-leader-keys-for-major-mode 'elixir-mode
+      "'" 'inf-elixir
+      "sc" 'inf-elixir-send-buffer
+      "si" 'inf-elixir
+      "sI" 'inf-elixir-project
+      "sL" 'inf-elixir-send-line
+      "sR" 'inf-elixir-send-region))
+  (add-hook 'elixir-mode-hook #'spacemacs//elixir-setup-iex))
 
 (defun elixir/pre-init-ob-elixir ()
   (spacemacs|use-package-add-hook org
